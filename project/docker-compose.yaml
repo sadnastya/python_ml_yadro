@@ -7,6 +7,8 @@ services:
       - ./src:/src
     environment:
       SERVER_ID: SERVER-1
+    env_file:
+      - database.env
     depends_on:
       - db
 
@@ -16,6 +18,8 @@ services:
       - ./src:/src
     environment:
       SERVER_ID: SERVER-2
+    env_file:
+      - database.env
     depends_on:
       - db
 
@@ -37,7 +41,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: app
     ports:
-      - "54320:5432"
+      - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
 

@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
-from models import Molecule
+from src.models import Molecule
+
 
 class MoleculeRepository:
     def __init__(self, db: Session):
@@ -9,7 +10,8 @@ class MoleculeRepository:
         return self.db.query(Molecule).all()
 
     def get_by_id(self, molecule_id: int):
-        return self.db.query(Molecule).filter(Molecule.id == molecule_id).first()
+        mol = self.db.query(Molecule).filter(Molecule.id == molecule_id)
+        return mol.first()
 
     def create(self, mid: int, name: str):
         molecule = Molecule(id=mid, name=name)
